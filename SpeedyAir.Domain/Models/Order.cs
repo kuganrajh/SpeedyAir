@@ -7,12 +7,12 @@ namespace SpeedyAir.Domain.Models
 	{
         public string Id { get; set; }
         public string Destination { get; set; }
-        public int? FlightNumber { get; set; }
+        public Flight Flight { get; set; }
 
         public override string ToString()
         {
-          string status= this.FlightNumber.HasValue ? $"flightNumber: {this.FlightNumber}" : "flightNumber: not scheduled";
-           return $"order: {this.Id}, {status}";
+            string status = this.Flight != null ? $"flightNumber: {this.Flight.FlightNumber}, departure: {this.Flight.Departure}, arrival: {this.Flight.Arrival}, day: {this.Flight.Day}" : "flightNumber: not scheduled";
+            return $"order: {this.Id}, {status}";
         }
     }
 }

@@ -18,6 +18,11 @@ class Program
             IOrderService order = new OrderService();
 
             flightService.DisplaySchedule();
+
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("Task 2");
+            Console.WriteLine("------------------------------");
+
             order.AssignAndDisplayOrders();
         }
         catch (Exception ex)

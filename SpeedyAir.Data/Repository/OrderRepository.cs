@@ -12,9 +12,18 @@ namespace SpeedyAir.Data.Repository
         {
             try
             {
+                _orders = new List<Order>();
                 string jsonString = File.ReadAllText(filePath);
-                var ordersDictionary = JsonSerializer.Deserialize<Dictionary<string, Order>>(jsonString);
-                _orders = ordersDictionary.Select(x => new Order() { Id = x.Key, Destination = x.Value.Destination }).ToList();
+
+                Dictionary<string, Dictionary<string, string>> orders = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(jsonString);
+
+                foreach (var item in orders)
+                {
+                    Order order = new Order();
+                    order.Id = item.Key; 
+                    order.Destination = item.Value["destination"];
+                    _orders.Add(order);
+                }
             }
             catch (FileNotFoundException ex)
             {
